@@ -9,7 +9,10 @@ python train.py train_shakespeare_char.py         #Check the train.py file to tr
 python sample.py --out_dir=out-shakespeare-char
 
 
-Once the Model gets trained move the CheckersHuman.pt from the out-shakespeare-char folder and meta.pkl from data/checkers_games to chess_llm_interpretability/models folder  
+Once the Model gets trained move the CheckersHuman.pt from the out-shakespeare-char folder and meta.pkl from data/checkers_games to chess_llm_interpretability/models folder.
+
+cd chess_llm_interpretability
+Refer chess_llm_interpretability Readme for training the probe.
 ```
 
 This nanoGPT repo is almost identical to the original nanoGPT repo. I made some logging changes, stored my training data in int8 instead of int16 due to a smaller vocab size, and modified get_batch(). My hugging face datasets are collections of length 1024 blocks. Every block begins with ";", my delimiter token. For example, ";1.e4 e5 2.Nf3 ...". I modified get_batch() to ensure that the beginning of every one of the inputs the model sees is the beginning of one of my blocks.
