@@ -32,7 +32,8 @@ if not logger.handlers:
 MODEL_DIR = "models/"
 DATA_DIR = "data/"
 PROBE_DIR = "linear_probes/"
-SAVED_PROBE_DIR = "linear_probes/saved_probes/"
+#SAVED_PROBE_DIR = "linear_probes/saved_probes/"
+SAVED_PROBE_DIR = "linear_probes/"
 WANDB_PROJECT = "checkers_linear_probes"
 BATCH_SIZE = 2
 D_MODEL = 512
