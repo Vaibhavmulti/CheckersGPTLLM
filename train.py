@@ -333,6 +333,7 @@ while True:
                     'config': config,
                 }
                 print(f"saving checkpoint to {EXPERIMENT_CKPT_DIR}")
+                os.makedirs(EXPERIMENT_CKPT_DIR, exist_ok=True)
                 torch.save(checkpoint, os.path.join(EXPERIMENT_CKPT_DIR, f"CheckersHuman{iter_num}.pt"))
     
     if iter_num == 0 and eval_only:

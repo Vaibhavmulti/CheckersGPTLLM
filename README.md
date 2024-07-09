@@ -1,11 +1,15 @@
 # QUICKSTART
 
 ```
+Create a python environment with version 3.11
 pip install torch numpy transformers datasets tiktoken wandb tqdm
 wandb login xxxx # xxxx = auth token, find it at wandb.ai/authorize Otherwise, send wandb_logging to False
 python prepare.py
 python train.py train_shakespeare_char.py         #Check the train.py file to train on multiple GPUs
 python sample.py --out_dir=out-shakespeare-char
+
+
+Once the Model gets trained move the CheckersHuman.pt from the out-shakespeare-char folder and meta.pkl from data/checkers_games to chess_llm_interpretability/models folder  
 ```
 
 This nanoGPT repo is almost identical to the original nanoGPT repo. I made some logging changes, stored my training data in int8 instead of int16 due to a smaller vocab size, and modified get_batch(). My hugging face datasets are collections of length 1024 blocks. Every block begins with ";", my delimiter token. For example, ";1.e4 e5 2.Nf3 ...". I modified get_batch() to ensure that the beginning of every one of the inputs the model sees is the beginning of one of my blocks.
