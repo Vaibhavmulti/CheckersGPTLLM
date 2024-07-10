@@ -11,8 +11,24 @@ python sample.py --out_dir=out-shakespeare-char
 
 Once the Model gets trained move the CheckersHuman.pt from the out-shakespeare-char folder and meta.pkl from data/checkers_games to chess_llm_interpretability/models folder.
 
+
+Train probes using the Chess_llm_interpretability
 cd chess_llm_interpretability
 Refer chess_llm_interpretability Readme for training the probe.
+```
+
+
+```
+For training on the synthetic data.
+
+First generate the synthetic data using :
+cd checkersengine/checkers
+python synthetic_paralleldatagetn.py
+python merge_syntheticdata.py
+
+Then follow the same steps you did for training the model.
+NOTE , the synthetic data will have a vocab of 16 in place of 17 in the human data , so we need to change the vocab size in the appropriate places to make the code work.
+
 ```
 
 This nanoGPT repo is almost identical to the original nanoGPT repo. I made some logging changes, stored my training data in int8 instead of int16 due to a smaller vocab size, and modified get_batch(). My hugging face datasets are collections of length 1024 blocks. Every block begins with ";", my delimiter token. For example, ";1.e4 e5 2.Nf3 ...". I modified get_batch() to ensure that the beginning of every one of the inputs the model sees is the beginning of one of my blocks.

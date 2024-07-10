@@ -61,6 +61,7 @@ def generate_data(filename, num_games):
 
 
 def main():
+    #Number of games to generate
     num_entries = 16000000
     num_processes = 100
     chunk_size = num_entries // num_processes
