@@ -31,22 +31,19 @@ NOTE , the synthetic data will have a vocab of 16 in place of 17 in the human da
 
 ```
 
-This nanoGPT repo is almost identical to the original nanoGPT repo. I made some logging changes, stored my training data in int8 instead of int16 due to a smaller vocab size, and modified get_batch(). My hugging face datasets are collections of length 1024 blocks. Every block begins with ";", my delimiter token. For example, ";1.e4 e5 2.Nf3 ...". I modified get_batch() to ensure that the beginning of every one of the inputs the model sees is the beginning of one of my blocks.
+This nanoGPT repo is almost identical to the original nanoGPT repo of Karpathy. get_batch() is modified.The block length is 400. Every block begins with ";", the delimiter token . For example, ";1. 11-15 24-20 ...". The get_batch() is modified  to ensure that the beginning of every one of the inputs the model sees is the beginning of one of the blocks.
 
-After running `prepare.py`, you can also run `get_batch.ipynb` to ensure that every batch begins with ";1.", which corresponds to to encoded integers [15,  6,  4].
+After running `prepare.py`, you can also run `get_batch.ipynb` to ensure that every batch begins with ";1"
 
-Wandb loss curves and model configs can be viewed here: https://api.wandb.ai/links/adam-karvonen/u783xspb
+The 25M parameter model was trained on 4 NVIDIA A40 with a total training time of close to 14 hours
 
-The 25M parameter model took 72 hours to train on one RTX 3090 GPU. The 50M parameter
-model took 38 hours to train on four RTX 3090 GPUs. By lowering batch size and increasing gradient accumulation steps, you can easily train using less than 8GB of VRAM.
+# nanoGPT (https://github.com/karpathy/nanoGPT.git)
 
-# nanoGPT
+![nanoGPT](nanogpt.jpg)
 
-![nanoGPT](assets/nanogpt.jpg)
 
 The simplest, fastest repository for training/finetuning medium-sized GPTs. It is a rewrite of [minGPT](https://github.com/karpathy/minGPT) that prioritizes teeth over education. Still under active development, but currently the file `train.py` reproduces GPT-2 (124M) on OpenWebText, running on a single 8XA100 40GB node in about 4 days of training. The code itself is plain and readable: `train.py` is a ~300-line boilerplate training loop and `model.py` a ~300-line GPT model definition, which can optionally load the GPT-2 weights from OpenAI. That's it.
 
-![repro124m](assets/gpt2_124M_loss.png)
 
 Because the code is so simple, it is very easy to hack to your needs, train new models from scratch, or finetune pretrained checkpoints (e.g. biggest one currently available as a starting point would be the GPT-2 1.3B model from OpenAI).
 
