@@ -1,12 +1,11 @@
 # chess_llm_interpretability
-This evaluates LLMs trained on PDN format Checkers games through the use of linear probes. We can check the LLMs internal understanding of board state and ability to estimate the skill level of the players involved. We can also perform interventions on the model's internal board state by deleting pieces from its internal world model.
+This evaluates LLMs trained on PDN format Checkers games through the use of linear probes. We can check the LLMs internal understanding of board state.
 
 This repo can train, evaluate, and visualize linear probes on LLMs that have been trained to play Checkers with PDN strings. 
 
 # Setup
 
 ```
-pip install -r requirements.txt
 python model_setup.py
 ```
 
@@ -15,7 +14,7 @@ Split the dataset for training the probes
 python data/split_traintest.py
 ```
 
-The `train_test_chess.py` script can be used to either train new linear probes or test a saved probe on the test set.
+The `train_test_checkers.py` script can be used to either train new linear probes or test a saved probe on the test set.
 
 Command line arguments:
 
@@ -27,17 +26,12 @@ Command line arguments:
 Examples:
 
 Train piece board state probes:
-`python train_test_chess.py`
+`python train_test_checkers.py`
 
 
-See all options: `python train_test_chess.py -h`
-
-
-# Interventions
-
-To perform board state interventions on one layer, run `python board_state_interventions.py`. It will record JSON results in `intervention_logs/`. To get better results, train a set of 8 (one per layer) board state probes using `train_test_chess.py` and rerun.
-
-
+See all options: `python train_test_checkers.py -h`
+# Visualization
+    Run all cells in the chess_llm_interpretability/probe_output_visualization.ipynb for visualizing the probe_outputs.
 # Useful links
 
 
