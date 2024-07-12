@@ -13,10 +13,10 @@ The codebase is taken from nanoGPT(https://github.com/karpathy/nanoGPT) for trai
 nanoGPT is used for training the GPT model on the PDN(Portable Draught Notation) strings of Checkers game, and the chess_llm_interpretability is used for training the linear probles on the layers of the GPT model.
 
 ## Requirements
-Create a python environment with version 3.11
-pip install torch numpy transformers datasets tiktoken wandb tqdm
-pip install -r chess_llm_interpretability/requirements.txt
-wandb login xxxx # xxxx = auth token, find it at wandb.ai/authorize Otherwise, send wandb_logging to False
+    Create a python environment with version 3.11
+    pip install torch numpy transformers datasets tiktoken wandb tqdm
+    pip install -r chess_llm_interpretability/requirements.txt
+    wandb login xxxx # xxxx = auth token, find it at wandb.ai/authorize Otherwise, send wandb_logging to False
 
 ## Preparing datasets for training
     Human played games (Human dataset)

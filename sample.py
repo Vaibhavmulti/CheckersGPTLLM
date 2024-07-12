@@ -14,7 +14,7 @@ SAMPLE_DUMP_NAME = "data/checkers_games/sample_dump/"         #For checking the 
 META_PATH = "data/checkers_games/meta.pkl"
 # -----------------------------------------------------------------------------
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
-out_dir = 'out-shakespeare-char' # ignored if init_from is not 'resume'
+out_dir = 'out-checkers-char' # ignored if init_from is not 'resume'
 start = "\n" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
 #start = "FILE:prompt.txt" 
 num_samples = 100 # number of samples to draw
