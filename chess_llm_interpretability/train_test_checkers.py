@@ -12,8 +12,8 @@ from jaxtyping import Int, Float, jaxtyped
 from torch import Tensor
 from beartype import beartype
 import collections
-import chess_llm_interpretability.checkers_utils as checkers_utils
-from chess_llm_interpretability.checkers_utils import PlayerColor, Config
+import checkers_utils as checkers_utils
+from checkers_utils import PlayerColor, Config
 import argparse
 
 logger = logging.getLogger(__name__)
@@ -635,8 +635,8 @@ def construct_linear_probe_data(
     - The layer to probe in the GPT
     - The GPT model in transformer_lens format
     - The number of layers in the GPT
-    - board_seqs_int: the integer sequences representing the chess games, encoded using meta.pkl
-    - board_seqs_string: the string sequences representing the chess games
+    - board_seqs_int: the integer sequences representing the checkers games, encoded using meta.pkl
+    - board_seqs_string: the string sequences representing the checkers games
     - custom_indices: the indices of the moves we want to probe on. By default, these are the indices of every "."
     - skill_stack: the skill levels of the players in the games (only used if probing for skill)
     """
@@ -760,7 +760,7 @@ def test_linear_probe_cross_entropy(
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        description="Train or test chess probes on piece or skill data."
+        description="Train or test checkers probes on piece or skill data."
     )
     parser.add_argument(
         "--mode",
@@ -809,7 +809,7 @@ if __name__ == "__main__":
                 "tf_lens_CheckersHuman_checkers_piece_probe_layer_6.pth",
                 "tf_lens_CheckersHuman_checkers_piece_probe_layer_7.pth"
             ]
-            
+        #Only for Chessgpt 
         elif args.probe == "skill":
             saved_probes = [
                 "tf_lens_lichess_8layers_ckpt_no_optimizer_chess_skill_probe_layer_5.pth"

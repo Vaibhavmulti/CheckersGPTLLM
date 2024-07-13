@@ -1,4 +1,3 @@
-import chess
 import pandas as pd
 import torch
 from torch.nn import functional as F
@@ -29,7 +28,7 @@ def board_to_random_state() -> torch.Tensor:
     return state
 
 
-def board_to_skill_state(board: chess.Board, skill: float) -> torch.Tensor:
+def board_to_skill_state(board: Game, skill: float) -> torch.Tensor:
     """Given a checkers board object, return a 1x1 torch.Tensor.
     The 1x1 array should tell what skill level the player is."""
     state = torch.zeros((1, 1), dtype=torch.int)
@@ -87,7 +86,7 @@ def multiple_moves(moves_split):
     return new_moves
 
 
-def pgn_string_to_board(pgn_string: str) -> chess.Board:
+def pgn_string_to_board(pgn_string: str) -> Game:
     """Convert a PDN string to a checkers Game object.
     We are making an assumption that the pdn string is in this format:
     ;1. 11-15 24-20 2. 8-11 28-24"""
@@ -128,7 +127,7 @@ def pgn_string_to_board(pgn_string: str) -> chess.Board:
 
 def create_state_stack(
     moves_string: str,
-    custom_board_to_state_fn: Callable[[chess.Board], torch.Tensor],
+    custom_board_to_state_fn: Callable[[Game], torch.Tensor],
     skill: Optional[torch.Tensor] = None,
 ) -> torch.Tensor:
     """Given a string of PDN format moves, create an 8x8 torch.Tensor for every character in the string."""
@@ -209,7 +208,7 @@ def create_state_stack(
 
 def create_state_stacks(
     moves_strings: list[str],
-    custom_board_to_state_fn: Callable[[chess.Board], torch.Tensor],
+    custom_board_to_state_fn: Callable[[Game], torch.Tensor],
     skill_array: Optional[torch.Tensor] = None,
 ) -> Float[Tensor, "modes sample_size pgn_str_length rows cols"]:
     """Given a list of strings of PDN format moves, create a tensor of shape (len(moves_strings), 8, 8).
@@ -283,7 +282,7 @@ def one_hot_to_state_stack(one_hot: torch.Tensor, min_val: int) -> torch.Tensor:
     return state_stack
 
 
-def square_to_coordinate(square: chess.Square) -> tuple[int, int]:
+def square_to_coordinate(square) -> tuple[int, int]:
     row = move_translater[square][0]
     column = move_translater[square][1]
     return (row, column)
@@ -474,6 +473,7 @@ piece_config = Config(
     linear_probe_name="checkers_piece_probe",
 )
 
+#Chess specific
 color_config = Config(
     min_val=-1,
     max_val=1,
