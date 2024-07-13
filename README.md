@@ -1,11 +1,11 @@
 ## CheckersGPT
 ![Teaser image](./Checkersmain.png)
-**Picture:** *CheckersGPT Model Architecture*
+**Picture:** *CheckersGPT Model*
 
 This repository contains the official Pytorch implementation of the following paper:
 > **CheckersGPT: Learning World Models through Language Modeling**<br>
 
-> **Authors:** *Abhinav Joshi, *Vaibhav Sharma, Ashutosh Modi<br>
+> **Authors:** Abhinav Joshi*, Vaibhav Sharma*, Ashutosh Modi<br>
 >
 > **Abstract:** *Although Large Language Models (LLMs) have been trained using just the next token prediction objective, these have shown impressive performance on various tasks. Consequently, it has attracted research interests in this regard. While one line of work in the past has suggested that LLMs learn surface-level statistics from the dataset, another line of work emphasizes that the learned representations are effective for simulating the underlying world model, considering the causal relationship for the next token prediction. This phenomenon is often referred to as the emergence of a world model in sequence prediction tasks. Recent work has demonstrated this phenomenon in a simulated setting of board games like Othello and Chess. In this paper, we analyze the game of Checkers to find out the emergence of a world model in a language model. By training a GPT-style autoregressive language model using only the next character prediction objective, we find that the model does learn a world model representation of the board positions. We perform our analysis on two datasets: 1) from human gameplay and 2) synthetic, which comes from the checkers game tree. With multiple models trained with different layer sizes, we find that increasing the parameter size does help learn better world model representation decoded by linear probes.*
 
@@ -45,9 +45,18 @@ Synthetic Data will have a vocab of 16 instead of 17 , so we need to change the 
 Once the Model gets trained move the CheckersHuman.pt from the out-checkers-char folder and meta.pkl from data/checkers_games to chess_llm_interpretability/models folder.
 
 
+
+
+<br>
+<br>
+
+[Train probe(README)](./chess_llm_interpretability/README.md) for training the probe.
+This evaluates LLMs trained on PDN format Checkers games through the use of linear probes. We can check the LLMs internal understanding of board state
 ## Train probes using the Chess_llm_interpretability
     cd chess_llm_interpretability
-    Refer chess_llm_interpretability Readme for training the probe.
+    python model_setup.py
+    python data/split_traintest.py
+    python train_test_checkers.py
 
 
 
