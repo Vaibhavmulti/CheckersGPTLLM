@@ -9,7 +9,7 @@ To run with DDP on 4 gpus on 1 node, example:
 $ torchrun --standalone --nproc_per_node=4 train.py
 
 We will use 
-$ torchrun --standalone --nproc_per_node=4 train.py train_shakespeare_char.py
+$ torchrun --standalone --nproc_per_node=4 train.py train_checkers_char.py
 
 To run with DDP on 4 gpus across 2 nodes, example:
 - Run on the first (master) node with example IP 123.456.123.456:
