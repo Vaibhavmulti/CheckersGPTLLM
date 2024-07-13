@@ -31,7 +31,6 @@ nanoGPT is used for training the GPT model on the PDN(Portable Draught Notation)
     python merge_syntheticdata.py
 
     #Come back to the root folder 
-    cd..
     python preparesynthetic.py
 
 Synthetic Data will have a vocab of 16 instead of 17 , so we need to change the vocab size appropriately.No need to change the vocab if training on the human dataset.
