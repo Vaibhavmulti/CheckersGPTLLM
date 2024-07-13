@@ -22,6 +22,8 @@ nanoGPT is used for training the GPT model on the PDN(Portable Draught Notation)
     Human played games (Human dataset)
     python prepare.py
 
+    OR 
+
     Synthetic games(Synthetic dataset)
     #First generate the synthetic data using :
     cd checkersengine/checkers
