@@ -40,6 +40,7 @@ Synthetic Data will have a vocab of 16 instead of 17 , so we need to change the 
 
 ## Sampling model
     python sample.py
+    Run checkersengine/checkers/checkerengine_validmoves.ipynb for checking the valid moves generated.
 
 Once the Model gets trained move the CheckersHuman.pt from the out-checkers-char folder and meta.pkl from data/checkers_games to chess_llm_interpretability/models folder.
 
